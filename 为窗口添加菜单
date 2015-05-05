@@ -1,0 +1,48 @@
+import java.awt.*;
+import java.awt.event.*;
+public class FrameWithMenu extends Frame implements ActionListener {
+Panel p=new Panel();
+Button b=new Button("退出");
+MenuBar mb=new MenuBar(); // 以下生成菜单组件对象
+Menu m1=new Menu("文件");
+MenuItem open=new MenuItem("打开");
+MenuItem close=new MenuItem("关闭");
+MenuItem exit=new MenuItem("退出");
+Menu m12=new Menu("编辑");
+MenuItem copy=new MenuItem("复制");
+MenuItem cut=new MenuItem("剪切");
+MenuItem paste=new MenuItem("粘贴");
+Menu m2=new Menu("帮助");
+MenuItem content=new MenuItem("目录");
+MenuItem index=new MenuItem("索引");
+MenuItem about=new MenuItem("关于");
+FrameWithMenu() {
+super("添加菜单的窗口");
+setSize(350,200);
+add("South",p);
+p.add(b);
+b.addActionListener(this);
+m1.add(open); // 将菜单项加入到菜单m1 中
+m1.add(close);
+m1.addSeparator(); //在菜单中添加分隔条
+m1.add(exit);
+open.addActionListener(this); //给菜单项open 注册事件监听器
+exit.addActionListener(this);
+mb.add(m1); // 将菜单m1 加入到菜单栏mb 中
+m12.add(copy); m12.add(cut); m12.add(paste);
+m1.add(m12);//将m12 作为2 级菜单添加到m1 菜单项中
+m2.add(content); m2.add(index); m2.addSeparator(); m2.add(about);
+mb.add(m2);
+setMenuBar(mb); // 设置菜单栏为mb
+show();// 显示组件
+}
+public static void main(String args[]) {
+new FrameWithMenu();
+}
+public void actionPerformed(ActionEvent e) {
+if (e.getActionCommand()=="退出")
+System.exit(0);
+if (e.getActionCommand()=="打开")
+new FrameWithListener ();
+}
+}
